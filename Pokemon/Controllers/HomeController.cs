@@ -11,14 +11,11 @@ namespace Pokemon.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly IServicioAPI _servicioAPI;
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
 
-        public HomeController(ApplicationDbContext context)//(IServicioAPI servicioAPI)//(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            //_logger = logger;
-            //_servicioAPI = servicioAPI;
             _context = context;
         }
 
@@ -48,13 +45,13 @@ namespace Pokemon.Controllers
             else // Llamar a los datos desde la DB local
             {
 				pk = _context.Pokemons
-		       .Include(p => p.Abilities)//.ThenInclude(a => a.Ability)
+		       .Include(p => p.Abilities)
                .Include(p=> p.Forms) 
-               .Include(p => p.Game_Indices)//.ThenInclude(a => a.Version)
-               .Include(p => p.Moves)//.ThenInclude(a=> a.Move)
-               .Include(p => p.Stats)//.ThenInclude(a=>a.Stat)
+               .Include(p => p.Game_Indices)
+               .Include(p => p.Moves)
+               .Include(p => p.Stats)
                .Include(p => p.Sprites)
-               .Include(p => p.Types)//.ThenInclude(a=>a.Type) // Carga las habilidades relacionadas con el Pokémon
+               .Include(p => p.Types)
 		       .FirstOrDefault(p => p.Id == pk.Id);
 			}
                 //Muestro en pantalla los datos

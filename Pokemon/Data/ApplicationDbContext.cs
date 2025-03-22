@@ -9,7 +9,7 @@ namespace Pokemon.Data
 		: base(options)
 		{
 		}
-
+		// Tablas que seran creadas en DB
 		public DbSet<Pokemons> Pokemons { get; set; }
 		public DbSet<Ability> Ability { get; set; }
 		public DbSet<AbilityInfo> AbilityInfo { get; set; }
