@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35913.81 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon", "Pokemon\Pokemon.csproj", "{77E7FBDB-8DEC-40DE-AF98-F2046F40C5E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon.Tests", "Pokemon.Tests\Pokemon.Tests.csproj", "{A3DFA88E-5E07-4478-86BB-18A2827BE551}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{77E7FBDB-8DEC-40DE-AF98-F2046F40C5E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77E7FBDB-8DEC-40DE-AF98-F2046F40C5E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77E7FBDB-8DEC-40DE-AF98-F2046F40C5E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3DFA88E-5E07-4478-86BB-18A2827BE551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3DFA88E-5E07-4478-86BB-18A2827BE551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3DFA88E-5E07-4478-86BB-18A2827BE551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3DFA88E-5E07-4478-86BB-18A2827BE551}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

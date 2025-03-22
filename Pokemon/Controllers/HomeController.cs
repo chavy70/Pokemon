@@ -22,7 +22,6 @@ namespace Pokemon.Controllers
             _context = context;
         }
 
-        //[HttpGet]
         public async Task<IActionResult> Index(string buscar)
         {
             // Obtener los datos de la PokeAPI
@@ -32,18 +31,23 @@ namespace Pokemon.Controllers
 			// Pregunta en la base de datos local si el pokemon existe
 			Pokemons pk = await _context.Pokemons.FirstOrDefaultAsync(p => p.Name == buscar || p.Id.ToString() == buscar);
 
-
             ViewBag.Accion = "Buscar Pokemon";
-            if (pk is null) { 
+            // Llamar a la PokeAPI
+            if (pk is null)
+            {
                 // Busco el Pokemon desde PokeAPI
-                pk = await _servicioAPI.Obtener(buscar); // ("1");
+                pk = await _servicioAPI.Obtener(buscar);
                 // Agrego al conexto
                 _context.Pokemons.Add(pk);
                 // Guardo en la base de datos local
                 await _context.SaveChangesAsync();
             }
-            //Muestro en pantalla los datos
-            return View(pk);
+            else // Llamar a los datos desde la DB local
+            { 
+            
+            }
+                //Muestro en pantalla los datos
+                return View(pk);
         }
 
         public IActionResult Privacy()
