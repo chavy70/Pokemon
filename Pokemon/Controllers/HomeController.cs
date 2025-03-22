@@ -37,11 +37,13 @@ namespace Pokemon.Controllers
             {
                 // Busco el Pokemon desde PokeAPI
                 pk = await _servicioAPI.Obtener(buscar);
-                // Agrego al conexto
-                _context.Pokemons.Add(pk);
-                // Guardo en la base de datos local
-                await _context.SaveChangesAsync();
-            }
+                if (pk is not null) { 
+                    // Agrego al conexto
+                    _context.Pokemons.Add(pk);
+                    // Guardo en la base de datos local
+                    await _context.SaveChangesAsync();
+				}else return View();
+			}
             else // Llamar a los datos desde la DB local
             { 
             

@@ -18,12 +18,21 @@ namespace Pokemon.Servicios
 		public async Task<Pokemons> Obtener(string pokemon)
 		{
 			var cliente = new HttpClient();
-			cliente.BaseAddress = new Uri(_urlBase);
-			var response = await cliente.GetAsync(pokemon);
-			if (response.IsSuccessStatusCode) { 
-				var jsonRespuesta = await response.Content.ReadAsStringAsync();
-				var resultado = JsonConvert.DeserializeObject<Pokemons>(jsonRespuesta);
-				return resultado;
+			try { 
+				cliente.BaseAddress = new Uri(_urlBase);
+				var response = await cliente.GetAsync(pokemon);
+				if (response.IsSuccessStatusCode)
+				{
+					var jsonRespuesta = await response.Content.ReadAsStringAsync();
+					var resultado = JsonConvert.DeserializeObject<Pokemons>(jsonRespuesta);
+					return resultado;
+				}
+				else {
+					return null;
+				}
+			}
+			catch (Exception ex) {
+				return null;
 			}
 			throw new NotImplementedException();
 		}

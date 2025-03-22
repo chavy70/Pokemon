@@ -20,19 +20,24 @@ namespace Pokemon.Tests
 			using var context = new ApplicationDbContext(options);
 			IServicioAPI _servicioAPI = new ServicioAPI();
 
-
+			var result = new Pokemons();
 			// PRUEBA #1  -------------------------------------------------------------------------------
 			Pokemons pk = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "bulbasaur" || p.Id.ToString() == "1");
 			if (pk is null)
 			{
 				// Busco el Pokemon desde PokeAPI
 				pk = await _servicioAPI.Obtener("bulbasaur");
-				// Agrego al contexto
-				context.Pokemons.Add(pk);
-				// Guardo en la base de datos local
-				await context.SaveChangesAsync();
+				if (pk is not null)
+				{
+					// Agrego al contexto
+					context.Pokemons.Add(pk);
+					// Guardo en la base de datos local
+					await context.SaveChangesAsync();
+					result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "bulbasaur" || p.Id.ToString() == "-9");
+				}
 			}
-			var result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "bulbasaur" || p.Id.ToString() == "-9");
+			else result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "bulbasaur" || p.Id.ToString() == "-9");
+
 			// Assert
 			Assert.NotNull(result);
 			Assert.Equal("bulbasaur", result.Name);
@@ -41,17 +46,22 @@ namespace Pokemon.Tests
 
 
 			// PRUEBA #2  -------------------------------------------------------------------------------
+			result = new Pokemons();
 			pk = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "bulbasaur" || p.Id.ToString() == "1");
 			if (pk is null)
 			{
 				// Busco el Pokemon desde PokeAPI
 				pk = await _servicioAPI.Obtener("bulbasaur");
-				// Agrego al contexto
-				context.Pokemons.Add(pk);
-				// Guardo en la base de datos local
-				await context.SaveChangesAsync();
-			}
-			result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "bulbasaur" || p.Id.ToString() == "-9");
+				if (pk is not null)
+				{
+					// Agrego al contexto
+					context.Pokemons.Add(pk);
+					// Guardo en la base de datos local
+					await context.SaveChangesAsync();
+					result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "bulbasaur" || p.Id.ToString() == "-9");
+				}
+			}else result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "bulbasaur" || p.Id.ToString() == "-9");
+
 			// Assert
 			Assert.NotNull(result);
 			Assert.Equal("bulbasaur", result.Name);
@@ -61,17 +71,23 @@ namespace Pokemon.Tests
 
 
 			// PRUEBA #3  -------------------------------------------------------------------------------
+			result = new Pokemons();
 			pk = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "A" || p.Id.ToString() == "4");
 			if (pk is null)
 			{
 				// Busco el Pokemon desde PokeAPI
 				pk = await _servicioAPI.Obtener("4");
-				// Agrego al contexto
-				context.Pokemons.Add(pk);
-				// Guardo en la base de datos local
-				await context.SaveChangesAsync();
+				if (pk is not null)
+				{
+					// Agrego al contexto
+					context.Pokemons.Add(pk);
+					// Guardo en la base de datos local
+					await context.SaveChangesAsync();
+					result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "charmander" || p.Id.ToString() == "-9");
+				}
 			}
-			result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "charmander" || p.Id.ToString() == "-9");
+			else result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "charmander" || p.Id.ToString() == "-9");
+
 			// Assert
 			Assert.NotNull(result);
 			Assert.Equal("charmander", result.Name);
@@ -79,20 +95,24 @@ namespace Pokemon.Tests
 
 
 			// PRUEBA #4  -------------------------------------------------------------------------------
+			result = new Pokemons();
 			pk = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "A" || p.Id.ToString() == "0");
 			if (pk is null)
 			{
 				// Busco el Pokemon desde PokeAPI
 				pk = await _servicioAPI.Obtener("0");
-				// Agrego al contexto
-				context.Pokemons.Add(pk);
-				// Guardo en la base de datos local
-				await context.SaveChangesAsync();
-			}
-			result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "a" || p.Id.ToString() == "0");
+				if (pk is not null) { 
+					// Agrego al contexto
+					context.Pokemons.Add(pk);
+					// Guardo en la base de datos local
+					await context.SaveChangesAsync();
+					result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "a" || p.Id.ToString() == "0");
+				}
+			}else result = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "a" || p.Id.ToString() == "0");
+
 			// Assert
 			Assert.NotNull(result);
-			Assert.Equal("charmander", result.Name);
+			Assert.Equal(null, result.Name);
 		}
 	}
 }
