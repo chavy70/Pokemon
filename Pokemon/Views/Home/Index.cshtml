@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Pokemons
+<div class="text-center">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Accion
+        </div>
+        <div class="card-body">
+
+            <form asp-action="Index" asp-controller="Home">
+                <div class="row">
+                    <div class="form-group col-md-10">
+                        <input type="text" name="buscar" class="form-control" />
+                    </div>    
+                    <div class="form-group col-md-2">
+                        <button type="submit" class="btn btn-success btn-sm">Buscar</button>
+                    </div>
+                    <hr />
+                    <br />
+                    <div class="form-group col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <input asp-for="Name" />
+                            </div>
+                             <div class="form-group col-md-2">
+                                <input asp-for="Base_Experience" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input asp-for="Height" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input asp-for="Is_Default" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input asp-for="Order" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input asp-for="Weight" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                
+
+
+            </form>
+        </div>
+    </div>
+</div>
