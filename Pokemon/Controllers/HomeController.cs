@@ -24,14 +24,15 @@ namespace Pokemon.Controllers
 
         public async Task<IActionResult> Index(string buscar)
         {
-            // Obtener los datos de la PokeAPI
-            IServicioAPI _servicioAPI = new ServicioAPI();
+			ViewBag.Accion = "Buscar Pokemon";
+			// Obtener los datos de la PokeAPI
+			IServicioAPI _servicioAPI = new ServicioAPI();
             // Si no se busco nada aun no se hace nada
             if (buscar == null) return View();
 			// Pregunta en la base de datos local si el pokemon existe
 			Pokemons pk = await _context.Pokemons.FirstOrDefaultAsync(p => p.Name == buscar || p.Id.ToString() == buscar);
 
-            ViewBag.Accion = "Buscar Pokemon";
+            
             // Llamar a la PokeAPI
             if (pk is null)
             {
@@ -45,9 +46,17 @@ namespace Pokemon.Controllers
 				}else return View();
 			}
             else // Llamar a los datos desde la DB local
-            { 
-            
-            }
+            {
+				pk = _context.Pokemons
+		       .Include(p => p.Abilities)//.ThenInclude(a => a.Ability)
+               .Include(p=> p.Forms) 
+               .Include(p => p.Game_Indices)//.ThenInclude(a => a.Version)
+               .Include(p => p.Moves)//.ThenInclude(a=> a.Move)
+               .Include(p => p.Stats)//.ThenInclude(a=>a.Stat)
+               .Include(p => p.Sprites)
+               .Include(p => p.Types)//.ThenInclude(a=>a.Type) // Carga las habilidades relacionadas con el Pokémon
+		       .FirstOrDefault(p => p.Id == pk.Id);
+			}
                 //Muestro en pantalla los datos
                 return View(pk);
         }
