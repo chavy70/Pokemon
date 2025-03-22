@@ -1,0 +1,5 @@
+Motor de Base de Datos: SQL Server
+
+1- Cambiar la cadena de conexión de SQL Server del archivo "appsettings.json", de la sección  "ConnectionStrings -> "DefaultConnection" por la de su Server local
+2- Correr el Script de la carpeta Scripts/Crear_base_datos.sql para la creación de la base de datos a ser utilizada
+3- 
