@@ -21,7 +21,7 @@ namespace Pokemon.Tests
 			IServicioAPI _servicioAPI = new ServicioAPI();
 
 			var result = new Pokemons();
-			// PRUEBA #1  -------------------------------------------------------------------------------
+			// CASO #1  -------------------------------------------------------------------------------
 			Pokemons pk = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "bulbasaur" || p.Id.ToString() == "1");
 			if (pk is null)
 			{
@@ -45,7 +45,7 @@ namespace Pokemon.Tests
 
 
 
-			// PRUEBA #2  -------------------------------------------------------------------------------
+			// CASO #2  -------------------------------------------------------------------------------
 			result = new Pokemons();
 			pk = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "bulbasaur" || p.Id.ToString() == "1");
 			if (pk is null)
@@ -70,7 +70,7 @@ namespace Pokemon.Tests
 
 
 
-			// PRUEBA #3  -------------------------------------------------------------------------------
+			// CASO #3  -------------------------------------------------------------------------------
 			result = new Pokemons();
 			pk = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "A" || p.Id.ToString() == "4");
 			if (pk is null)
@@ -94,7 +94,7 @@ namespace Pokemon.Tests
 
 
 
-			// PRUEBA #4  -------------------------------------------------------------------------------
+			// CASO #4  -------------------------------------------------------------------------------
 			result = new Pokemons();
 			pk = await context.Pokemons.FirstOrDefaultAsync(p => p.Name == "A" || p.Id.ToString() == "0");
 			if (pk is null)
